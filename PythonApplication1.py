@@ -1,6 +1,8 @@
 # -*- coding:utf-8 -*-
 
 '''
+    @ 1.3.2 change: 2022/9/24
+    @ 1.3.1 change: 2022/9/16 
     @ 1.3 update: 2022/2/1 21:20 #Add a new language and cut many files.
     @ 1.2 update: 2021/6/26 18:30
     @ 1.1 update: 2021/6/26 17:38
@@ -15,7 +17,9 @@ from time import *
 from os import *
 from sys import *
 
-版本 = [49, 46, 51]; 年份 = [50, 48, 50, 49, 32]; 文件数量 = 100
+版本 = [49, 46, 51]
+年份 = [50, 48, 50, 49, 32]
+文件数量 = 100
 字符串 = {'名字' : [[71, 117, 101, 115, 115, 32, 110, 117, 109, 98, 101, 114], 
                     [29468, 25968, 23383], 
                     [12466, 12540, 12512, 12434, 25968, 12398, 12463, 12452, 12474, 65281],
@@ -75,47 +79,59 @@ from sys import *
 
 if __name__ == '__main__':
     try:
-        print('Collenting program...'); sleep(randint(2,5))
+        print('Collenting program...')
+        sleep(randint(2,5))
         for ci9 in range(0,61): #利用变量模拟加载文件
-            print('Loading language files...(' + str(ci9) + '/60)'); sleep(0.008)
+            print('Loading language files...(' + str(ci9) + '/60)')
+            sleep(0.008)
         while True: #循环提问选择语言，除非选择有效语言，否则不能进入下一步操作
             语言ID = str(input('language (English[0], 中文[1]，日本語[2]，闺蜜用语[3]): '))
             if 语言ID.isdigit() and int(语言ID) < 4 and int(语言ID) >= 0:
-                语言ID = int(语言ID); break
+                语言ID = int(语言ID)
+                break
             else: print('Invalid language')
         for ci in range(0,文件数量 + 1): 
             s1 = ''
-            for s in 字符串['加载文件'][语言ID]: s1 += chr(s)
-            print(s1 + str(ci) + '/' + str(文件数量) + ')'); s1 = ''
+            for s in 字符串['加载文件'][语言ID]: 
+                s1 += chr(s)
+            print(s1 + str(ci) + '/' + str(文件数量) + ')')
+            s1 = ''
         for s in 字符串['欢迎语'][语言ID]: s1 += chr(s)
         print('\n' + s1 + '\n') #提示
 
         def select(): #定义Select
             '''
-                弹出选择菜单
+            弹出选择菜单
             '''
             while True: #循环询问
                 s1 = ''
-                for s in 字符串['操作菜单'][语言ID]: s1 += chr(s)
+                for s in 字符串['操作菜单'][语言ID]:
+                    s1 += chr(s)
                 sel = input(s1) #选择操作
                 if sel.isdigit() and int(sel) >= 0 and int(sel) < 3:
                     sel = int(sel)#将变量int类型
                     if sel == 0: 
                         while True: 列表()
-                    elif sel == 1: print('?')
+                    elif sel == 1:
+                        print('?')
                     elif sel == 2: #判断sel是否等于2
                         ci = 0 #赋值变量
                         for ci in range(0,文件数量): 
                             s1 = ''
-                            for s in 字符串['删除文件'][语言ID]: s1 += chr(s)
+                            for s in 字符串['删除文件'][语言ID]:
+                                s1 += chr(s)
                             print(s1 + str(ci) + '/' + str(文件数量) + ')') #模拟提示、删除文件的次数
-                        for s in 字符串['无效'][语言ID]: print(chr(s),end='')
-                        print(''); break #跳出循环
+                        for s in 字符串['无效'][语言ID]:
+                            print(chr(s),end='')
+                        print('')
+                        break #跳出循环
                     else: 
-                        for s in 字符串['无效'][语言ID]: print(chr(s),end='')
+                        for s in 字符串['无效'][语言ID]:
+                            print(chr(s),end='')
                         print('')
                 else:
-                    for s in 字符串['无效'][语言ID]: print(chr(s),end='')
+                    for s in 字符串['无效'][语言ID]:
+                        print(chr(s),end='')
                     print('')
 
         def 列表():
@@ -123,42 +139,62 @@ if __name__ == '__main__':
                 数字列表方法，可以生成一个只有0和1的列表
             '''
             列表 = []
-            for __count in range(randint(0,100)): 列表.append(randint(0,1))
+            for __count in range(randint(0,100)):
+                列表.append(randint(0,1))
             print('\n' + '='*21,end='')
-            for s in 字符串['名字'][语言ID]: print(chr(s),end='')
+            for s in 字符串['名字'][语言ID]:
+                print(chr(s),end='')
             print('='*21)
             while True:
                 s1 = ''
-                for s in 字符串['输入数字'][语言ID]: s1 += chr(s); 
+                for s in 字符串['输入数字'][语言ID]:
+                    s1 += chr(s)
                 答案 = input(s1)
                 if 答案.isdigit() and int(答案) <= 100 and int(答案) >= 0:
                     答案 = int(答案)
                     if 答案 == len(列表): #定义列表的长度
-                        for s in 字符串['正确'][语言ID]: print(chr(s),end='')
-                        print(''); break
+                        for s in 字符串['正确'][语言ID]:
+                            print(chr(s),end='')
+                        print('')
+                        break
                     elif 答案 > len(列表): 
-                        for s in 字符串['大数'][语言ID]: print(chr(s),end='')
+                        for s in 字符串['大数'][语言ID]:
+                            print(chr(s),end='')
                         print('')
                     elif 答案 < len(列表): 
-                        for s in 字符串['小数'][语言ID]: print(chr(s),end='')
+                        for s in 字符串['小数'][语言ID]:
+                            print(chr(s),end='')
                         print('')
                 else: 
-                    for s in 字符串['无效'][语言ID]: print(chr(s),end='')
+                    for s in 字符串['无效'][语言ID]:
+                        print(chr(s),end='')
                     print('')
-            lc = len(列表); print(列表); s1 = ''; s2 = ''
-            for s in 字符串['所有'][语言ID]: s1 += chr(s)
-            for s in 字符串['数字'][语言ID]: s2 += chr(s)
-            print(s1 + str(len(列表)) + s2); print('\n'+'='*21,end='')
-            for s in 字符串['结束'][语言ID]: print(chr(s),end='')
+            lc = len(列表)
+            print(列表)
+            s1 = ''
+            s2 = ''
+            for s in 字符串['所有'][语言ID]:
+                s1 += chr(s)
+            for s in 字符串['数字'][语言ID]:
+                s2 += chr(s)
+            print(s1 + str(len(列表)) + s2)
+            print('\n'+'='*21,end='')
+            for s in 字符串['结束'][语言ID]:
+                print(chr(s),end='')
             print('='*21) #结尾横幅
             for ci in range(0,文件数量 + 1):
                 s1 = ''
-                for s in 字符串['删除文件'][语言ID]: s1 += chr(s)
-                print(s1 + str(ci) + '/' + 文件数量 + ')')
+                for s in 字符串['删除文件'][语言ID]:
+                    s1 += chr(s)
+                print(s1 + str(ci) + '/' + str(文件数量) + ')')
             s1 = ''
-            for s in 字符串['结束1'][语言ID]: s1 += chr(s)
-            print(s1); sleep(randint(0,2)); exit()
+            for s in 字符串['结束1'][语言ID]:
+                s1 += chr(s)
+            print(s1)
+            sleep(randint(0,2))
+            exit()
         select() #select方法
     finally:
-        print('Author: 2068651347@qq.com'); system('pause')
+        print('Author: 2068651347@qq.com')
+        system('pause')
  
